@@ -1,0 +1,49 @@
+MODEL:
+  META_ARCHITECTURE: "GeneralizedRNAS"
+  WEIGHT: "/home/yzhang/FAD/pretrained/rfdnet.pth"
+  RPN_ONLY: True
+  FAD_ON: True
+  FCOS_ON: True
+  RETINANET_ON: False
+  BACKBONE:
+    CONV_BODY: "RFDNET"
+  RESNETS:
+    BACKBONE_OUT_CHANNELS: 256
+  RETINANET:
+    USE_C5: False # FCOS uses P5 instead of C5
+  FCOS:
+    # normalizing the regression targets with FPN strides
+    NORM_REG_TARGETS: True 
+    CENTERNESS_ON_REG: True
+    CENTER_SAMPLING_RADIUS: 1.5
+    IOU_LOSS_TYPE: "giou"
+  FAD:
+    SEARCH: False
+    CLSTOWER: True
+    NUM_CELLS_CLS: 1 #2
+    NUM_NODES_CLS: 3
+    NUM_CHANNELS_CLS: 96
+    BOXTOWER: True
+    NUM_CELLS_BOX: 1 #2
+    NUM_NODES_BOX: 3
+    NUM_CHANNELS_BOX: 96
+DATASETS:
+  TRAIN: ("coco_2017_train",)
+  TEST: ("coco_2017_val",)
+INPUT:
+  MIN_SIZE_TRAIN: (512,) #(800,)
+  MAX_SIZE_TRAIN: 700 #1333
+  MIN_SIZE_TEST: 512 #800
+  MAX_SIZE_TEST: 700 #1333
+DATALOADER:
+  SIZE_DIVISIBILITY: 32
+SOLVER:
+  BASE_LR: 0.01
+  WEIGHT_DECAY: 0.0001
+  STEPS: (12000,16000) #(60000, 80000) 
+  MAX_ITER: 18000 #90000 
+  CHECKPOINT_PERIOD: 1000
+  IMS_PER_BATCH: 8
+  WARMUP_METHOD: "constant"
+TEST:
+  IMS_PER_BATCH: 64
