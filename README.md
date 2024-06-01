@@ -4,6 +4,7 @@
 **NAS-FTI-FDet** has been accepted for publication in the IEEE Transactions on Industrial Informatics 2024.
 
 **NAS-FTI-FDet** is a time- and memory- efficient differentiable architecture method. It mainly focuses on searching a task-specific detection head for fault detection of freight train images. For a detailed description of technical details and experimental results, please refer to our paper:
+<div align="center"><img decoding="async" src="Framework.jpg" width="75%"/> </div>
 
 [Efficient Visual Fault Detection for Freight Train via Neural Architecture Search with Data Volume Robustness](https://arxiv.org/pdf/2405.17004)
 
